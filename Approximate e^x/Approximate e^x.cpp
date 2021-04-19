@@ -1,32 +1,45 @@
-// This program will approximate e^x
+// This program will calculate e
 
 #include <iostream>
 using namespace std;
 
 int main()
 {
-    //x = input value
-    //y = radical
-    //z = denominator
-    double result = 0, x, y = 1, z = 1;
+    //n = input
+    //fact = factorial
+    //i = index
+    //e = calculated value
+    long double n, i, fact, e = 1;
 
-    cout << "This program will approximate e^x\n";
-    cout << "(Euler\'" << "s Number raised to the power of x)\n\n";
+    cout << "This program will calculate e (Euler\'" << "s Number) using the below continuous sum:\n\n";
+    cout << "         1    1    1\n";
+    cout << "e = 1 + -- + -- + -- + ...\n";
+    cout << "        1!   2!   3!\n\n";
 
-    cout << "Enter a value for x: ";
-    cin >> x;
+    cout << "Enter the number of terms to calculate: ";
+    cin >> n;
 
-    while (y<6)
+    i = n;
+    fact = n;
+
+    for (int j = 0; j < n; j++)
     {
-        //This loop will increment the radical by 1 and the denominator by
-        //the product of the next radical and the current denominator
+        //Loops to calculate factorial of n
+        for (int k = 1; k < i; k++)
+        {
+            fact *= (i - k);
+        }
 
-        result += pow (x, y) / z;
-        y++;
-        z *= y;
-    }
+        cout << "fact = " << fact << endl;
+        e += (1 / fact);
+        cout << "e = " << e << endl;
+        cout << "i = " << i << endl;
+        i--;
+        cout << "i = " << i << endl;
+        fact = i;
+        }
 
-    result += 1;
+    //Output of e
+    cout << "e calculated to " << n << " terms of the infinite sum is " << e << "\n";
 
-    cout << "\nThe result is " << result << "\n";
 }
